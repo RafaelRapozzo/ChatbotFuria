@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Fã FURIA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <h1>🔥 Seja bem-vindo, fã da FURIA!</h1>
+
+    <div class="chat-box" id="chat-box">
+      <div class="bot-msg">Qual time da FURIA você torce?</div>
+      <div class="options">
+        <button onclick="escolherTime('csgo')">CS:GO</button>
+        <button onclick="escolherTime('valorant')">Valorant</button>
+        <button onclick="escolherTime('lol')">LoL</button>
+      </div>
+    </div>
+
+    <input type="text" id="nome" placeholder="Seu nome" />
+    <button onclick="enviarNome()">Confirmar Nome</button>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
