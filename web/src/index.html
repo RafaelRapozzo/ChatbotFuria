@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Central do Fã FURIA</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <img src="imgs/furialogo.png" alt="FURIA" >
+    <img src="imgs/furialogo.png" alt="FURIA" />
   </header>
 
   <div class="content">
     <h1>Bem-vindo à Central do Fã da FURIA</h1>
-    <p>Escolha seu time favorito para começar:</p>
+    <p>Toque no botão para começar!</p>
   </div>
+
+  <button id="open-chat-btn" onclick="openChat()">Abrir Chat</button>
 
   <div id="chatbot-container">
-    <div id="chatbox">
-      <p class="bot"><strong>FURIABot:</strong> Qual time da FURIA você acompanha?</p>
+    <div id="chat-header">
+      <span>FURIABot</span>
+      <button id="close-chat-btn" onclick="closeChat()">×</button>
     </div>
-    <div id="team-options">
-      <button onclick="selectTeam('csgo')">CS:GO</button>
-      <button onclick="selectTeam('valorant')">Valorant</button>
-      <button onclick="selectTeam('lol')">League of Legends</button>
-    </div>
-    <div id="user-options" style="display:none;"></div>
+    <div id="chatbox"></div>
+    <div id="team-selection" style="display:none;"></div>
+    <input type="text" id="user-input" placeholder="Digite aqui..." autocomplete="off" />
   </div>
 
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
