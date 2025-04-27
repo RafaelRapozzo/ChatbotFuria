@@ -1,5 +1,7 @@
 let userName = null;
 let timeSelecionado = null;
+let userEmail = null;
+let emailSent = false;  // Flag para verificar se o e-mail já foi enviado
 
 const chatbox = document.getElementById("chatbox");
 const userInput = document.getElementById("user-input");
@@ -21,6 +23,7 @@ function closeChat() {
   teamSelection.style.display = "none";
   userName = null;
   timeSelecionado = null;
+  userEmail = null;
 }
 
 userInput.addEventListener("keypress", function (e) {
@@ -43,7 +46,13 @@ userInput.addEventListener("keypress", function (e) {
       return;
     }
 
-    responder(text);
+    if (!userEmail) {
+      chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Agora, me diga seu e-mail, por favor.</p>`;
+      userInput.placeholder = "Digite seu e-mail...";
+      return;
+    }
+
+    responder(texto);
   }
 });
 
@@ -60,7 +69,7 @@ function selectTeam(team) {
   timeSelecionado = team;
   const teamName = { csgo: 'CS:GO', valorant: 'Valorant', lol: 'LoL' }[team];
   chatbox.innerHTML += `<p class="user"><strong>Você:</strong> ${teamName}</p>`;
-  chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Beleza! Pode me perguntar sobre: próximo jogo, resultado, jogadores, estatísticas, loja, ou mandar mensagem para o time!</p>`;
+  chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Beleza! Agora me envie seu e-mail, por favor.</p>`;
   teamSelection.style.display = "none";
   userInput.style.display = "block";
 }
@@ -105,4 +114,33 @@ function responder(texto) {
   }
 
   chatbox.scrollTop = chatbox.scrollHeight;
+
+  // Se o email foi fornecido, enviar os dados para o backend
+  if (userEmail && !emailSent) {
+    sendToBackend();
+  }
+}
+
+function sendToBackend() {
+  fetch('https://seu-backend.com/api/usuario', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      nome: userName,
+      time: timeSelecionado,
+      email: userEmail,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    emailSent = true;  // Marca o e-mail como enviado
+    chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Dados enviados com sucesso! Obrigado pelo apoio, ${userName}!</p>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+  })
+  .catch((error) => {
+    chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Ocorreu um erro ao enviar seus dados. Tente novamente mais tarde.</p>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+  });
 }
