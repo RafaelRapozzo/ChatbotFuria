@@ -359,6 +359,26 @@ body {
   color: #CC0000;
 }
 
+.bot-link {
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.bot-link:hover {
+  color: #c2c2c2;
+  text-decoration: underline;
+  filter: brightness(50%);
+}
+
+.bot-link:active {
+  color: #C5C5C5;
+}
+
+.bot-link:visited {
+  color: #B5B5B5;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .info-grid,

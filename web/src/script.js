@@ -31,7 +31,7 @@ function closeChat() {
 }
 
 function checkEmail(email) {
-  fetch('http://localhost:3000/user/find-by-email', {
+  fetch('https://chatbotfuria-production.up.railway.app/user/find-by-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email })
@@ -40,12 +40,14 @@ function checkEmail(email) {
     .then(data => {
       if (data.exists) {
         emailChecked = true;
+        userCreated = true; 
         userName = data.user.name;
         timeSelecionado = data.user.favgame;
         chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Bem vindo de volta, ${data.user.name}!</p>`;
         showConversationOptions(data.user.favgame);
       } else {
         emailChecked = true;
+        userCreated = false;
         chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> E-mail válido! Qual seu nome?</p>`;
       }
     })
@@ -56,7 +58,7 @@ function checkEmail(email) {
 }
 
 function createUser(name, email, team) {
-  fetch('http://localhost:3000/user/create-user', {
+  fetch('https://chatbotfuria-production.up.railway.app/user/create-user', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, favgame: team })
@@ -81,9 +83,7 @@ function createUser(name, email, team) {
 }
 
 function updateUserTeam(team) {
-  console.log('Atualizando time do usuário no backend:', team);
-
-  fetch('http://localhost:3000/user/update-team', {
+  fetch('https://chatbotfuria-production.up.railway.app/user/update-team', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -98,7 +98,6 @@ function updateUserTeam(team) {
       return res.json();
     })
     .then(data => {
-      console.log('Resposta do backend ao atualizar time:', data);
       timeSelecionado = data.favgame;
       const teamName = { csgo: 'CS:GO', valorant: 'Valorant', lol: 'LoL' }[timeSelecionado];
       chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Time atualizado para ${teamName}. O que você gostaria de saber?</p>`;
@@ -174,50 +173,48 @@ function handleOptionClick(option, game) {
     case "csgo":
       switch (option) {
         case "Último jogo da FURIA":
-          response = "Confira nossos resultados recentes em:\nhltv.org/team/8297/furia#tab-matchesBox";
+          response = 'Confira nossos resultados recentes em: <a href="https://hltv.org/team/8297/furia#tab-matchesBox" target="_blank" class="bot-link">HLTV</a>';
           break;
         case "Próximo jogo":
-          response = "Acompanhe nossa agenda de jogos em:\nhltv.org/team/8297/furia#tab-matchesBox";
+          response = 'Acompanhe nossa agenda de jogos em: <a href="https://hltv.org/team/8297/furia#tab-matchesBox" target="_blank" class="bot-link">HLTV</a>';
           break;
         case "Lineup atual":
-          response = "Lineup FURIA CS:\n• FalleN (AWPer/IGL)\n• molodoy (Entry)\n• KSCERATO (Rifler)\n• yuurih (Rifler)\n• YEKINDAR (Entry/Lurker)";
+          response = "Lineup FURIA CS:\n• FalleN (AWPer/IGL)\n• Molodoy (Entry)\n• KSCERATO (Rifler)\n• Yuurih (Rifler)\n• YEKINDAR (Entry/Lurker)";
           break;
         case "Ranking mundial":
-          response = "Confira nossa posição atual no ranking em:\nhltv.org/ranking/teams";
+          response = 'Confira nossa posição atual no ranking em: <a href="https://hltv.org/ranking/teams" target="_blank" class="bot-link">HLTV</a>';
           break;
       }
       break;
-      
     case "valorant":
       switch (option) {
         case "Último resultado":
-          response = "Confira nossos resultados recentes em:\nvlr.gg/team/furia/matches";
+          response = 'Confira nossos resultados recentes em: <a href="https://www.vlr.gg/team/matches/2406/furia/" target="_blank" class="bot-link">VLR.gg</a>';
           break;
         case "Próxima partida":
-          response = "Acompanhe nossa agenda de jogos em:\nvlr.gg/team/furia/matches";
+          response = 'Acompanhe nossa agenda de jogos em: <a href="https://www.vlr.gg/team/matches/2406/furia/" target="_blank" class="bot-link">VLR.gg</a>';
           break;
         case "Jogadores do time":
-          response = "Lineup FURIA Valorant:\n• Quick (Iniciador)\n• Nozwerr (Controlador)\n• Khalil (Sentinela)\n• dgzin (Duelista)\n• Mazin (Flex)";
+          response = "Lineup FURIA Valorant:\n• Raafa\n• Khalil\n• Havoc\n• Heat\n• Pryze";
           break;
         case "Campeonatos":
-          response = "Participamos do VCT Americas, principal competição da região.\nAcompanhe em: valorantesports.com/vct/americas";
+          response = 'Participamos do VCT Americas, principal competição da região. Acompanhe em: <a href="https://valorantesports.com/pt-BR/leagues/vct_americas/ignored/vct_masters" target="_blank" class="bot-link">Valorant Esports</a>';
           break;
       }
       break;
-      
     case "lol":
       switch (option) {
         case "Posição no CBLOL":
-          response = "Acompanhe nossa posição atual no CBLOL em:\nlolesports.com/standings/cblol-brazil";
+          response = 'Acompanhe nossa posição atual no CBLOL em: <a href="https://lolesports.com/pt-BR/gpr/2025" target="_blank" class="bot-link">LoL Esports</a>';
           break;
         case "Próxima partida":
-          response = "Confira nossa agenda de jogos em:\nlolesports.com/schedule?leagues=cblol-brazil";
+          response = 'Confira nossa agenda de jogos em: <a href="https://lolesports.com/pt-BR/leagues/lta_s" target="_blank" class="bot-link">LoL Esports</a>';
           break;
         case "Jogadores do time":
-          response = "Lineup FURIA LoL:\n• Robo (Top)\n• Goku (Jungle)\n• Envy (Mid)\n• Netuno (ADC)\n• RedBert (Support)";
+          response = "Lineup FURIA LoL:\n• JoJo\n• Ayu\n• Guigo\n• Tutsz\n• Tatu";
           break;
         case "Histórico recente":
-          response = "Confira nosso histórico completo de partidas em:\nlolesports.com/teams/furia";
+          response = 'Confira nosso histórico completo de partidas em: <a href="https://liquipedia.net/leagueoflegends/FURIA/Played_Matches" target="_blank" class="bot-link">LoL Esports</a>';
           break;
       }
       break;
@@ -261,12 +258,14 @@ function showTeamOptions() {
 
 function handleTeamSelect(team) {
   teamSelection.style.display = "none";
-  
+
   if (!userCreated && userName && userEmail) {
     createUser(userName, userEmail, team);
-  } else {
-
+  } else if (userCreated) {
     updateUserTeam(team);
+  } else {
+    console.error("Erro: Dados insuficientes para criar ou atualizar o usuário.");
+    chatbox.innerHTML += `<p class="bot"><strong>FURIABot:</strong> Não foi possível processar sua solicitação. Tente novamente mais tarde.</p>`;
   }
 }
 
