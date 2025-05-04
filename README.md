@@ -38,12 +38,12 @@ npm install
 
 3. Crie um arquivo `.env` na raiz do backend com:
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="file:./deploy.db"
 ```
 
 4. Execute as migrations do Prisma:
 ```bash
-npx prisma migrate dev
+npx prisma migrate deploy
 ```
 
 5. Inicie o servidor:
