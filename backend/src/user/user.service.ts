@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from './dto/createuser.dto';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserTeamDto } from './dto/update-user-team.dto';
 
 @Injectable()
 export class UserService {
@@ -16,10 +17,33 @@ export class UserService {
     });
   }
   async getUser(email: string) {
-    return this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: {
         email: email,
       },
+      select: {
+        favgame: true,
+        name: true,
+      },
     });
+    if (user) {
+      return { exists: true, user, message: 'Usuário já cadastrado!' };
+    } else {
+      return {
+        exists: false,
+        message: 'Usuário não encontrado, siga com o cadastro.',
+      };
+    }
+  }
+  async updateTeam(body: UpdateUserTeamDto) {
+    const user = await this.prisma.user.update({
+      where: {
+        email: body.email,
+      },
+      data: {
+        favgame: body.favgame,
+      },
+    });
+    return user;
   }
 }

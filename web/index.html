@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Central do Fã FURIA</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="icon" type="image/x-icon" href="./src/imgs/favicon.ico">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="./src/imgs/furialogo.png" alt="FURIA">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active" data-tab="home">Início</a></li>
+      <li><a href="#" data-tab="teams">Times</a></li>
+      <li><a href="#" data-tab="history">História</a></li>
+    </ul>
+  </nav>
+
+  <div id="home" class="tab-content active">
+    <div class="content">
+      <h1>Bem-vindo à Central do Fã da FURIA</h1>
+      <p>Converse com a gente e fique por dentro!</p>
+    </div>
+  </div>
+
+  <div id="teams" class="tab-content">
+    <section class="furia-info">
+      <h2>Nossos Times</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>CS:GO</h3>
+          <p>Time atual:</p>
+          <ul>
+            <li>FalleN ()</li>
+            <li>molodoy ()</li>
+            <li>KSCERATO ()</li>
+            <li>yuurih</li>
+            <li>YEKINDAR ()</li>
+          </ul>
+          <p>Ranking Mundial: 8º</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Valorant</h3>
+          <p>Time atual:</p>
+          <ul>
+            <li>Quick</li>
+            <li>Nozwerr</li>
+            <li>Khalil</li>
+            <li>dgzin</li>
+            <li>Mazin</li>
+          </ul>
+          <p>Próximo torneio: VCT Americas</p>
+        </div>
+
+        <div class="info-card">
+          <h3>League of Legends</h3>
+          <p>Time atual:</p>
+          <ul>
+            <li>Robo (Top)</li>
+            <li>Goku (Jungle)</li>
+            <li>Envy (Mid)</li>
+            <li>Netuno (ADC)</li>
+            <li>RedBert (Sup)</li>
+          </ul>
+          <p>Posição CBLOL: 4º lugar</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="history" class="tab-content">
+  <section class="history-section">
+    <h2>Nossa História</h2>
+    <div class="history-content">
+      <div class="timeline-card">
+        <h3>2017</h3>
+        <p>Fundação da FURIA Esports pelos empresários Jaime Pádua e André Akkari.</p>
+      </div>
+
+      <div class="timeline-card">
+        <h3>2018</h3>
+        <p>Entrada no cenário de CS:GO com a aquisição do primeiro time profissional.</p>
+      </div>
+
+      <div class="timeline-card">
+        <h3>2019</h3>
+        <p>Ascensão internacional com participações em majors e torneios de elite do CS:GO.</p>
+      </div>
+
+      <div class="timeline-card">
+        <h3>2020</h3>
+        <p>Expansão para novos jogos com a entrada no cenário de League of Legends.</p>
+      </div>
+
+      <div class="timeline-card">
+        <h3>2021</h3>
+        <p>Entrada no Valorant e consolidação como uma das maiores organizações do Brasil.</p>
+      </div>
+
+      <div class="timeline-card">
+        <h3>2024</h3>
+        <p>Nova era do CS com a chegada de FalleN e YEKINDAR ao time principal.</p>
+      </div>
+    </div>
+
+    <div class="achievements">
+      <h3>Principais Conquistas</h3>
+      <ul>
+        <li>Top 1 Américas no CS:GO (2019-2020)</li>
+        <li>Participações em Majors do CS:GO</li>
+        <li>Finalista do CBLOL (2022)</li>
+        <li>Classificação para o VCT Americas</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+  <button id="open-chat-btn" onclick="openChat()">Falar com o FURIABot</button>
+
+  <div id="chatbot-container">
+    <div id="chatbox"></div>
+    <div id="team-selection" style="display: none;"></div>
+    <div id="options-container" style="display: none;"></div>
+    <input type="text" id="user-input" placeholder="Digite sua resposta..." autocomplete="off" style="display: none;" />
+    <button id="close-chat-btn" onclick="closeChat()">×</button>
+  </div>
+
+  <script src="./src/script.js"></script>
+</body>
+</html>

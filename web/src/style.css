@@ -5,29 +5,73 @@ body {
   color: white;
 }
 
-header {
+.navbar {
   background: #000;
-  padding: 20px;
-  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-header img {
-  height: 70px;
+.nav-logo img {
+  height: 60px;
+  width: 60px;
+  padding: 10px 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 20px 15px;
+  display: inline-block;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #E6D945;
+}
+
+.tab-content {
+  display: none;
+  padding-top: 20px;
+}
+
+.tab-content.active {
+  display: block;
 }
 
 .content {
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 40px 20px;
 }
 
 .content h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  color: #E6D945;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
 }
 
 .content p {
-  font-size: 18px;
   color: #ccc;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 #open-chat-btn {
@@ -36,11 +80,11 @@ header img {
   right: 20px;
   padding: 12px 20px;
   font-size: 16px;
-  background: #4CAF50;
+  background: #E6D945;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  color: white;
+  color: black;
   z-index: 1000;
 }
 
@@ -74,7 +118,7 @@ header img {
 }
 
 .bot {
-  color: #4CAF50;
+  color: #E6D945;
 }
 
 .user {
@@ -106,8 +150,8 @@ header img {
 #team-selection button {
   flex: 1 1 30%;
   padding: 10px;
-  background: #4CAF50;
-  color: white;
+  background: #E6D945;
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -125,7 +169,206 @@ header img {
   cursor: pointer;
 }
 
+#options-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 8px;
+  background: #111;
+  justify-content: center;
+  border-top: 1px solid #333;
+}
+
+#options-container button {
+  flex: 1 1 45%;
+  padding: 10px;
+  background: #333;
+  color: white;
+  border: 1px solid #E6D945;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+#options-container button:hover {
+  background: #E6D945;
+  color: black;
+}
+
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.furia-info {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.furia-info h2 {
+  color: #E6D945;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  color: #E6D945;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card li {
+  color: #f5f5f5;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+
+.info-card li:last-child {
+  border-bottom: none;
+}
+
+.info-card p {
+  color: #ccc;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.history-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.history-section h2 {
+  color: #E6D945;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.history-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.timeline-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-card h3 {
+  color: #E6D945;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.timeline-card p {
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+
+.achievements {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.achievements h3 {
+  color: #E6D945;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.achievements ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.achievements li {
+  color: #f5f5f5;
+  padding: 10px;
+  background: #222;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #E6D945;
+}
+
+.chat-link {
+  color: #FF0000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.chat-link:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+  text-decoration: underline;
+}
+
+.chat-link:active {
+  transform: scale(0.98);
+}
+
+.chat-link:visited {
+  color: #CC0000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .info-grid,
+  .history-content,
+  .achievements ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-card,
+  .info-card {
+    margin-bottom: 15px;
+  }
 }
